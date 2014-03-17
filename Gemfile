@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.0'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', group: [:development, :test]
 gem 'carrierwave'
 gem 'mini_magick', '3.5.0'
 gem "fog", "~> 1.3.1"
