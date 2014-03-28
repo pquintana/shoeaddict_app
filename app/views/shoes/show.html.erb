@@ -7,8 +7,9 @@
 
 <p>
   <strong>Picture:</strong>
-  <!-- <%= @shoe.picture %> -->
-  <%= image_tag(@shoe.picture_url, :width => 600) if  @shoe.picture.present? %>
+  <!-- <%= @shoe.picture_url %> --> <!-- ESTE PARA LOCAL -->
+  <!-- <%= image_tag(@shoe.picture_url, :width => 600) if  @shoe.picture.present? %> --> <!-- ESTE PARA CARRIERWAVE -->
+  <%= image_tag(@shoe.picture_url) if  @shoe.has_picture_upload? %> <!-- ESTE PARA CARRIERWAVE-DIRECT -->
 </p>
 
 <p>

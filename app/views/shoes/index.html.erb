@@ -18,8 +18,12 @@
     <% @shoes.each do |shoe| %>
       <tr>
         <td><%= shoe.name %></td>
+        <!-- ESTE PARA LOCAL: -->
         <!-- <td><%= shoe.picture %></td> -->
-        <td><a href="<%= shoe.picture_url %>"><%= image_tag shoe.picture_url(:thumb) if shoe.picture?  %></a></td>
+        <!-- ESTE PARA CARRIERWAVE: -->
+        <!-- <td><a href="<%= shoe.picture_url %>"><%= image_tag shoe.picture_url(:thumb) if shoe.picture?  %></a></td> -->
+        <!-- ESTE PARA CARRIERWAVE-DIRECT: -->
+        <td><a href="<%= shoe.picture_url %>"><%= image_tag shoe.picture_url(:thumb) if shoe.has_picture_upload?  %></a></td>
         <td><%= shoe.designer %></td>
         <td><%= shoe.description %></td>
         <td><%= shoe.color %></td>
