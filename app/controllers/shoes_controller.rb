@@ -10,15 +10,26 @@ class ShoesController < ApplicationController
   # GET /shoes/1
   # GET /shoes/1.json
   def show
+    puts "SHOE = #{@shoe.inspect}"
+    puts "SHOE.PICTURE = #{@shoe.picture}"
+    puts "SHOE.PICTURE_URL = #{@shoe.picture_url}"
+    puts "SHOE.PICTURE_URL(:thumb) = #{@shoe.picture_url(:thumb)}"
   end
 
   # GET /shoes/new
   def new
-    @shoe = Shoe.new
+    # @shoe = Shoe.new
+    @shoe = (params[:key]) ? Shoe.new(picture_params) : Shoe.new
+    @shoe.picture.success_action_redirect = new_shoe_url
+    # @uploader.update_attribute :key, params[:key]
   end
 
   # GET /shoes/1/edit
   def edit
+    puts "params[:key] = #{params[:key]}"
+    puts "shoe[:key] = #{@shoe[:key]}"
+    @shoe.key = (params[:key]) if (params[:key])
+    @shoe.picture.success_action_redirect = edit_shoe_url
   end
 
   # POST /shoes
@@ -69,6 +80,10 @@ class ShoesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shoe_params
-      params.require(:shoe).permit(:name, :designer, :description, :color, :picture)
+      params.require(:shoe).permit(:name, :designer, :description, :color, :picture, :key)
+    end
+
+    def picture_params
+      params.permit(:key)
     end
 end
